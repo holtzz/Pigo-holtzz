@@ -5,8 +5,11 @@ __author__ = 'holtzz'
 
 class Pigo:
 
-    isMoving = False
-    servoPos = 90
+    ######
+    ###### BASIC STATUS AND METHODS
+    ######
+
+    status = {'ismoving': False, 'servo': 90, 'leftspeed': 175, 'rightspeed': 175}
 
     def __init__(self):
         print "Hello!"
@@ -22,6 +25,14 @@ class Pigo:
         while fwd() != 1
             time.sleep(.1)
             print "I tried to vroom...but I couldn't."
+
+    ######
+    ###### COMPLEX METHODS
+    ######
+
+    ######
+    ###### MAIN APP STARTS HERE
+    ######
 
 piggy = Pigo()
 tina.fwd()
