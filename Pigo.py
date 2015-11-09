@@ -3,16 +3,19 @@ import time
 
 __author__ = 'holtzz'
 
+STOP_DIST = 50
+
 class Pigo:
 
     ######
     ###### BASIC STATUS AND METHODS
     ######
 
-    status = {'ismoving': False, 'servo': 90, 'leftspeed': 175, 'rightspeed': 175}
+    status = {'ismoving': False, 'servo': 90, 'leftspeed': 175, 'rightspeed': 175, 'dist': 100}
 
     def __init__(self):
         print "Hello!"
+        self.status['dist'] = us_dist(15)
 
     def stop(self):
         self.status["ismoving"] = False
@@ -27,15 +30,36 @@ class Pigo:
         for x in range(3):
            fwd()
 
+    def keepGoing(self):
+        if self.status['dist'] < STOP_DIST:
+            return False
+        else:
+            return True
+
+    def checkDist(self):
+        self.status['dist'] = us_dist(15)
+        print "There is something " + str(self.status['dist']) + "mm away from me!"
+
     ######
     ###### COMPLEX METHODS
     ######
 
+    def dance(self):
+        self.spin()
+        self.shuffle()
+        self.shakeServo()
+        self.rturn()
+        self.lturn()
+        self.blink()
     ######
     ###### MAIN APP STARTS HERE
     ######
-
 piggy = Pigo()
-tina.fwd()
-time.sleep(2)
-tina.stop()
+
+while piggy.keepGoing():
+    piggy.checkDist()
+    piggy.fwd()
+    time.sleep(2)
+    piggy.stop()
+
+piggy.stop()
