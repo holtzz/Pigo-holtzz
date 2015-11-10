@@ -30,8 +30,13 @@ class Pigo:
         for x in range(3):
            fwd()
 
+    #Check if the conditions are safe for the Pigo to continue.
     def keepGoing(self):
         if self.status['dist'] < STOP_DIST:
+            print "Obstacle within stop distance"
+            return False
+        elif volt() > 14 or volt() < 6:
+            print "Voltage outside of safe range: " + str(volt())
             return False
         else:
             return True
