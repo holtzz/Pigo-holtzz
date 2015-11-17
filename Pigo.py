@@ -48,6 +48,17 @@ class Pigo:
     ######
     ###### COMPLEX METHODS
     ######
+    def safeDrive(self):
+        self.fwd()
+        while self.keepGoing():
+            self.checkDist()
+        self.stop()
+
+    def servoSweep(self):
+        for ang in range(20, 160):
+            if ang % 5 = 0:
+                servo(ang)
+                time.sleep(.05)
 
     def dance(self):
         self.spin()
